@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">HaziKura</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_household_accounts">HouseholdAccounts</string>
+    <string name="title_b">B</string>
+    <string name="title_c">C</string>
+    <string name="title_d">D</string>
+    <string name="title_option">E</string>
+    <string name="main">Main Activity</string>
+    <string name="move">MOVE</string>
+    <string name="option">OptionActivity</string>
+    <string name="return_sub">RETURN</string>
+
 </resources>
