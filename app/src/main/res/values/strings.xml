@@ -10,4 +10,7 @@
     <string name="option">OptionActivity</string>
     <string name="return_sub">RETURN</string>
 
+    <string name="hello_main_fragment">Hello main fragment</string>
+    <string name="hello_option_fragment">Hello option fragment</string>
+
 </resources>
