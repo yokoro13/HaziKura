@@ -10,11 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.dev.hazikura.R;
-import com.example.dev.hazikura.fragment.MainFragment;
+import com.example.dev.hazikura.fragment.HouseholdFragment;
+import com.example.dev.hazikura.fragment.ManagementFragment;
+import com.example.dev.hazikura.fragment.MapFragment;
 import com.example.dev.hazikura.fragment.OptionFragment;
+import com.example.dev.hazikura.fragment.RemainderFragment;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class Main extends AppCompatActivity {
+    private static final String TAG = Main.class.getSimpleName();
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -22,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView= (BottomNavigationView)
-                findViewById(R.id.navigation);
+        fragment = new HouseholdFragment();
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,15 +34,18 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.household_accounts:
-                                fragment = new MainFragment();
+                                fragment = new HouseholdFragment();
                                 break;
-                            case R.id.b:
+                            case R.id.daily_necessities_management:
+                                fragment = new ManagementFragment();
                                 break;
-                            case R.id.c:
+                            case R.id.map_display:
+                                fragment = new MapFragment();
                                 break;
-                            case R.id.d:
+                            case R.id.remainder:
+                                fragment = new RemainderFragment();
                                 break;
-                            case R.id.e:
+                            case R.id.option:
                                 fragment = new OptionFragment();
                                 break;
                         }
@@ -48,5 +54,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_container, new HouseholdFragment());
+        transaction.commit();
     }
 }
