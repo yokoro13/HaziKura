@@ -17,6 +17,7 @@ import com.example.dev.hazikura.fragment.OptionFragment;
 import com.example.dev.hazikura.fragment.RemainderFragment;
 
 public class Main extends AppCompatActivity {
+    int x;
     private static final String TAG = Main.class.getSimpleName();
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
