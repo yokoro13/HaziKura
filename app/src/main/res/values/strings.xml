@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">HaziKura</string>
+    <string name="household">kakeibo</string>
+    <string name="map">map</string>
     <string name="title_household_accounts">HouseholdAccounts</string>
     <string name="title_daily_necessities_management">DailyNecessitiesManagement</string>
     <string name="title_remainder">Remainder</string>

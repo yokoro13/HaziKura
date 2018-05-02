@@ -18,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.HouseholdMain"
+            android:label="@string/household" >
+        </activity>
+        <activity
+            android:name=".activity.MapMain"
+            android:label="@string/map" >
+        </activity>
     </application>
 
 </manifest>

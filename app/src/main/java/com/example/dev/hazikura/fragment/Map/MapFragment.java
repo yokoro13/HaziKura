@@ -1,4 +1,4 @@
-package com.example.dev.hazikura.fragment;
+package com.example.dev.hazikura.fragment.Map;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,11 +12,12 @@ import com.example.dev.hazikura.R;
  * Created by dev on 2018/03/12.
  */
 
-public class RemainderFragment extends Fragment {
-    public RemainderFragment() {
+public class MapFragment extends Fragment{
+
+    public MapFragment() {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_remainder, container, false);
+        return inflater.inflate(R.layout.fragment_map, container, false);
     }
 }
