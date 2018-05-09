@@ -2,19 +2,20 @@
     <string name="app_name">HaziKura</string>
     <string name="household">kakeibo</string>
     <string name="map">map</string>
-    <string name="title_household_accounts">HouseholdAccounts</string>
-    <string name="title_daily_necessities_management">DailyNecessitiesManagement</string>
-    <string name="title_remainder">Remainder</string>
-    <string name="title_map_display">MapDisplay</string>
-    <string name="title_option">Option</string>
+    <string name="title_household_accounts">家計簿がめん</string>
+    <string name="title_daily_necessities_management">日用品</string>
+    <string name="title_remainder">りまいんだー</string>
+    <string name="title_map_display">まっぷ</string>
+    <string name="title_option">せって０位</string>
     <string name="main">Main Activity</string>
     <string name="move">MOVE</string>
     <string name="return_sub">RETURN</string>
 
-    <string name="hello_main_fragment">Hello main fragment</string>
-    <string name="hello_daily_necessities_management">Hello daily necessities management</string>
-    <string name="hello_remainder">Hello remainder</string>
-    <string name="hello_map_display">Hello map display</string>
-    <string name="hello_option_fragment">Hello option fragment</string>
+    <string name="hello_main_fragment">カケイボ</string>
+    <string name="hello_inout_fragment">にゅうりょく</string>
+    <string name="hello_daily_necessities_management">nitiyouhin</string>
+    <string name="hello_remainder">りまいんだ</string>
+    <string name="hello_map_display">まp</string>
+    <string name="hello_option_fragment">せてい</string>
 
 </resources>

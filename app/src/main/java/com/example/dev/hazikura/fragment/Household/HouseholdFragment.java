@@ -30,15 +30,12 @@ public class HouseholdFragment extends Fragment {
                 public void onClick(View view) {
                     FragmentManager manager = getFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
-
-                    transaction.replace(R.id.main_container, new ManagementFragment());
-
+                    transaction.addToBackStack("");
+                    transaction.replace(R.id.main_container, new InputFragment());
                     transaction.commit();
                 }
             });
             return root;
         }
-
-
 }
 
