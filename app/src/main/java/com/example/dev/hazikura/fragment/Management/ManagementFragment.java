@@ -21,4 +21,3 @@ public class ManagementFragment extends Fragment{
         return inflater.inflate(R.layout.fragment_management, container, false);
     }
 }
-

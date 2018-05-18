@@ -13,6 +13,7 @@
 
     <string name="hello_main_fragment">カケイボ</string>
     <string name="hello_inout_fragment">にゅうりょく</string>
+    <string name="hello_output_fragment">syutuりょく</string>
     <string name="hello_daily_necessities_management">nitiyouhin</string>
     <string name="hello_remainder">りまいんだ</string>
     <string name="hello_map_display">まp</string>
