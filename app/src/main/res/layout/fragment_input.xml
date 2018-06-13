@@ -19,11 +19,19 @@
 
     <EditText
         android:id="@+id/editText1"
-        android:layout_width="match_parent"
+        android:layout_width="283dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editText2"
         android:layout_marginBottom="-163dp"
-        android:hint="日ずけ" />
+        android:hint="日付" />
+
+    <Button
+        android:id="@+id/dateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/editText1"
+        android:text="日付を選択"></Button>
 
     <EditText
         android:id="@+id/editText2"
@@ -31,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="163dp"
-        android:hint="ししゅつ" />
+        android:hint="金額" />
 
     <EditText
         android:id="@+id/editText3"
@@ -46,8 +54,11 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="185dp"
-        android:text="決定"></Button>
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="150dp"
+        android:text="決定"
+        android:layout_alignParentLeft="true"
+        tools:ignore="RtlCompat"></Button>
 
 
 </RelativeLayout>
