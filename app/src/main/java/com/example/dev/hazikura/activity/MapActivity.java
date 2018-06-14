@@ -8,10 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.dev.hazikura.R;
-import com.example.dev.hazikura.fragment.Household.HouseholdFragment;
 import com.example.dev.hazikura.fragment.Map.MapFragment;
 
 public class MapActivity extends AppCompatActivity {
@@ -28,6 +28,9 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
         fragment = new MapFragment();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.footer_menu);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -64,5 +67,21 @@ public class MapActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_container, new MapFragment());
         transaction.commit();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
     }
 }

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.dev.hazikura.R;
@@ -31,6 +32,9 @@ public class RemainderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_remainder);
         fragment = new RemainderFragment();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.footer_menu);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,5 +71,21 @@ public class RemainderActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_container, new RemainderFragment());
         transaction.commit();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
     }
 }

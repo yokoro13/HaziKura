@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.dev.hazikura.R;
@@ -21,6 +22,7 @@ public class HouseholdActivity extends AppCompatActivity{
 
     private Intent intent;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,9 @@ public class HouseholdActivity extends AppCompatActivity{
         setContentView(R.layout.activity_household);
         fragment = new HouseholdFragment();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.footer_menu);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -66,6 +71,21 @@ public class HouseholdActivity extends AppCompatActivity{
         transaction.commit();
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+    }
 
 
 }
