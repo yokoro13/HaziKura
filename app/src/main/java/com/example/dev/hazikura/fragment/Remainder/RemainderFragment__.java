@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.dev.hazikura.R;
 
-public class RemainderFragment__ extends Fragment implements View.OnClickListener{
+public class RemainderFragment__ extends Fragment{
 
     private TextView titleText;
     private Button prevButton, nextButton;
@@ -19,11 +19,15 @@ public class RemainderFragment__ extends Fragment implements View.OnClickListene
     private GridView calendarGridView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_remainder, container, false);
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+/*
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_remainder, null);
 
-        //titleText = (TextView)View.findViewById(R.id.titleText);
+        titleText = (TextView)View.findViewById(R.id.titleText);
         //prevButton = (Button) View.findViewById(R.id.prevButton);
         prevButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +55,6 @@ public class RemainderFragment__ extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
-    }
+    }*/
 }
 

@@ -13,14 +13,16 @@ import android.view.MenuItem;
 
 import com.example.dev.hazikura.R;
 
+import com.example.dev.hazikura.fragment.Household.DatePick;
 import com.example.dev.hazikura.fragment.Household.HouseholdFragment;
+import com.example.dev.hazikura.fragment.Household.InputFragment;
 import com.example.dev.hazikura.fragment.Management.ManagementFragment;
 import com.example.dev.hazikura.fragment.Map.MapFragment;
 import com.example.dev.hazikura.fragment.Option.OptionFragment;
 import com.example.dev.hazikura.fragment.Remainder.RemainderFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements InputFragment.MyListener{
     private static final String TAG = MainActivity.class.getSimpleName();
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
@@ -80,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
+    }
+
+    @Override
+    public void onClickButton(){
+        DatePick datePicker = new DatePick();
+        datePicker.show(getSupportFragmentManager(), "datePicker");
     }
 
 }

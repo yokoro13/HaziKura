@@ -2,6 +2,7 @@ package com.example.dev.hazikura.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.dev.hazikura.R;
+import com.example.dev.hazikura.fragment.Household.DatePick;
+import com.example.dev.hazikura.fragment.Household.DateSetFragment;
 import com.example.dev.hazikura.fragment.Household.HouseholdFragment;
+import com.example.dev.hazikura.fragment.Household.InputFragment;
 
 public class HouseholdActivity extends AppCompatActivity{
 

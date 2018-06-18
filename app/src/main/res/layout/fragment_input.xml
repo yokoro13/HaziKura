@@ -17,35 +17,41 @@
         android:text="@string/hello_main_fragment"
         tools:ignore="RtlCompat" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText1"
-        android:layout_width="283dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText2"
+        android:layout_width="288dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="-163dp"
+        android:layout_marginTop="156dp"
+        android:textSize="18sp"
         android:hint="日付" />
 
     <Button
         android:id="@+id/dateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText1"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/editText1"
+        android:onClick="showDatePickerDialog"
         android:text="日付を選択"></Button>
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="163dp"
+        android:layout_above="@+id/editText3"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="-241dp"
         android:hint="金額" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="241dp"
         android:hint="内容" />
 
 

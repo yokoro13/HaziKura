@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/grayColor"
-    tools:context="com.example.dev.hazikura.fragment.Remainder.RemainderFragment">
+    android:background="@color/grayColor">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

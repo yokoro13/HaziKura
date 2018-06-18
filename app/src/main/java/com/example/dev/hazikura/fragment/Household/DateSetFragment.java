@@ -1,71 +1,61 @@
 package com.example.dev.hazikura.fragment.Household;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dev.hazikura.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
-public class DateSetFragment extends Fragment{
+public class DateSetFragment extends Fragment {
     private TextView mDate;
 
-    public DateSetFragment(){
+    public DateSetFragment() {
 
-    }/**
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        View view = inflater.inflate(R.layout.fragment_household, container, false);
-        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calender_input);
-        mDate = (TextView) findViewById(R.id.date);
-        mDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String date = mDate.getText().toString();
 
-                int year = 0;
-                int month = 0;
-                int dayOfMonth = 0;
-                if (TextUtils.isEmpty(date)) {
-                    Calendar calendar = Calendar.getInstance();
-                    year = calendar.get(Calendar.YEAR);
-                    month = calendar.get(Calendar.MONTH);
-                    dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-                } else {
-                    year = Integer.valueOf(date.substring(0, 4));
-                    month = Integer.valueOf(date.substring(5, 7));
-                    month = month - 1;
-                    dayOfMonth = Integer.valueOf(date.substring(8, 10));
-                }
-                showDatePickerDialog(year, month, dayOfMonth);
+    public static DateSetFragment newInstance() {
+        DateSetFragment fragment = new DateSetFragment();
+        return fragment;
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_input, container, false);
+    }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Button button = (Button)getActivity().findViewById(R.id.loadButton);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+
             }
         });
 
     }
 
-    public void showDatePickerDialog(int year, int month, int dayOfMonth) {
-        CustomDialogFragment dialog = CustomDialogFragment.newInstance(year, month, dayOfMonth);
-        dialog.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    public void setDate(int year, int month, int dayOfMonth) {
-        Calendar cal = Calendar.getInstance();
-        cal.set(year, month, dayOfMonth);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        mDate.setText(sdf.format(cal.getTime()));
-    }**/
 }
