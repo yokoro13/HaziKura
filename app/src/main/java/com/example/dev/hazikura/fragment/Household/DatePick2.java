@@ -9,12 +9,11 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.dev.hazikura.R;
-import com.example.dev.hazikura.activity.MainActivity;
 
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DatePick extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class DatePick2 extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     @Override
     @NonNull
@@ -29,8 +28,8 @@ public class DatePick extends DialogFragment implements DatePickerDialog.OnDateS
         return datePickerDialog;
     }
 
-    public void onDateSet(android.widget.DatePicker view, int y, int m, int d) {
-        final TextView textView = getActivity().findViewById(R.id.display_date);
+    public void onDateSet(DatePicker view, int y, int m, int d) {
+        final TextView textView = getActivity().findViewById(R.id.display_date2);
         String str = String.format(Locale.US, "%d/%d/%d", y, m+1, d);
         textView.setText(str);
     }
