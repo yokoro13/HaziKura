@@ -1,18 +1,31 @@
 <resources>
     <string name="app_name">HaziKura</string>
-    <string name="title_household_accounts">HouseholdAccounts</string>
-    <string name="title_daily_necessities_management">DailyNecessitiesManagement</string>
-    <string name="title_remainder">Remainder</string>
-    <string name="title_map_display">MapDisplay</string>
-    <string name="title_option">Option</string>
+    <string name="household">kakeibo</string>
+    <string name="map">map</string>
+    <string name="title_household_accounts">家計簿</string>
+    <string name="title_daily_necessities_management">日用品</string>
+    <string name="title_remainder">予定</string>
+    <string name="title_map_display">マップ</string>
+    <string name="title_option">設定</string>
     <string name="main">Main Activity</string>
     <string name="move">MOVE</string>
     <string name="return_sub">RETURN</string>
 
-    <string name="hello_main_fragment">Hello main fragment</string>
-    <string name="hello_daily_necessities_management">Hello daily necessities management</string>
-    <string name="hello_remainder">Hello remainder</string>
-    <string name="hello_map_display">Hello map display</string>
-    <string name="hello_option_fragment">Hello option fragment</string>
+    <string name="hello_main_fragment">家計簿</string>
+    <string name="hello_inout_fragment">入力</string>
+    <string name="hello_output_fragment">出力</string>
+    <string name="hello_daily_necessities_management">日用品</string>
+    <string name="hello_remainder">予定</string>
+    <string name="hello_map_display">マップ</string>
+    <string name="hello_option_fragment">設定</string>
+
+    <string name="no_date">No Data</string>
+    <string name="pick_date">Pick Date</string>
+    <string name="todo">TODO</string>
+    <string name="date">日付</string>
+    <string name="select_date">日付を選択</string>
+    <string name="decide">決定</string>
+    <string name="amount">金額</string>
+    <string name="content">内容</string>
 
 </resources>

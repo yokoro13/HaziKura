@@ -1,4 +1,4 @@
-package com.example.dev.hazikura.fragment;
+package com.example.dev.hazikura.fragment.Management;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -21,4 +21,3 @@ public class ManagementFragment extends Fragment{
         return inflater.inflate(R.layout.fragment_management, container, false);
     }
 }
-

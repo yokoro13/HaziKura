@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.dev.hazikura.activity.Main">
+    tools:context="com.example.dev.hazikura.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/main_container"
@@ -17,12 +17,7 @@
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navigation" />
+        android:id="@+id/footer_menu"
+        style="@style/Footer"/>
 
 </LinearLayout>
