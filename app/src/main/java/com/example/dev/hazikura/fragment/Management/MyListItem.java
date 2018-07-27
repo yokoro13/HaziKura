@@ -7,12 +7,21 @@ public class MyListItem {
     protected int id;
     protected String date;
     protected String content;
+    protected String number;
     protected String amount;
 
     public MyListItem(int id, String date, String content, String amount){
         this.id = id;
         this.date = date;
         this.content = content;
+        this.amount = amount;
+    }
+
+    public MyListItem(int id, String date, String content, String number, String amount){
+        this.id = id;
+        this.date = date;
+        this.content = content;
+        this.number = number;
         this.amount = amount;
     }
 
@@ -28,6 +37,8 @@ public class MyListItem {
     public String getContent() {
         return content;
     }
+
+    public String getNumber(){ return number; }
 
     public String getAmount() {
         return amount;

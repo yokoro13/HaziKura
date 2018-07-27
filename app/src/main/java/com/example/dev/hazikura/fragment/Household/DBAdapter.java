@@ -125,6 +125,7 @@ public class DBAdapter {
             db.endTransaction();
         }
     }
+
     private static class DBHelper extends SQLiteOpenHelper{
         public DBHelper(Context context){
             super(context, DB_NAME, null, DB_VERSION);
