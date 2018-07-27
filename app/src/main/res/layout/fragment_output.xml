@@ -64,7 +64,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/input_content"
+            android:id="@+id/output_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -132,7 +132,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/input_amount"
+            android:id="@+id/output_amount"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"

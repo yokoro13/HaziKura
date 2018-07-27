@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.LoginFilter;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,12 +44,6 @@ public class SelectListViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.select_listview, container, false);
 
-        return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         dbAdapter = new DBAdapter(getActivity());
         items = new ArrayList<>();
 
@@ -66,6 +60,7 @@ public class SelectListViewFragment extends Fragment {
                 builder.setMessage("削除しますか？");
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         myListItem = items.get(position);
@@ -76,17 +71,24 @@ public class SelectListViewFragment extends Fragment {
                         Log.d("Long Click:",String.valueOf(listID));
                         dbAdapter.closeDB();
                         loadMyList();
-                        }
+                    }
                 });
                 builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        }});
+                    }});
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 return false;
-                }
+            }
         });
+
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 
@@ -136,6 +138,7 @@ public class SelectListViewFragment extends Fragment {
         public MyBaseAdapter(Activity activity, List<MyListItem> items) {
             this.activity = activity;
             this.items = items;
+            Log.d("contract","コントラクタ通過");
         }
 
         // Listの要素数を返す
@@ -169,7 +172,7 @@ public class SelectListViewFragment extends Fragment {
 
             if (view == null) {
                 LayoutInflater inflater =
-                        (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.row_listview, parent, false);
 
                 TextView text_date = (TextView) view.findViewById(R.id.text_inputDate);
@@ -183,6 +186,8 @@ public class SelectListViewFragment extends Fragment {
                 holder.text_amount = text_amount;
                 view.setTag(holder);
 
+                Log.d("getView","view get");
+
             } else {
                 // 初めて表示されるときにつけておいたtagを元にviewを取得する
                 holder = (ViewHolder) view.getTag();
@@ -193,8 +198,8 @@ public class SelectListViewFragment extends Fragment {
             holder.text_content.setText(myListItem.getContent());
             holder.text_amount.setText(myListItem.getAmount());
 
+            Log.d("setView","view set");
             return view;
-
         }
     }
 }

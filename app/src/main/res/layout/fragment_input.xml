@@ -10,16 +10,6 @@
     android:id="@+id/input_fragment"
     >
 
-
-    <TextView
-        android:id="@+id/input_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/hello_main_fragment"
-        tools:ignore="RtlCompat" />
-
     <LinearLayout
         android:id="@+id/linearLayout_inputDate"
         android:layout_width="match_parent"

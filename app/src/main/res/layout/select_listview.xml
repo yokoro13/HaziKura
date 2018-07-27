@@ -15,8 +15,8 @@
     <TextView
         android:id="@+id/main_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_daily_necessities_management" />
+        android:layout_height="wrap_content"
+        android:text="長押しで削除できまs" />
 
     <ListView
         android:id="@+id/listView_management"

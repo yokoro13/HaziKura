@@ -92,7 +92,7 @@ public class DBAdapter {
     }
 
     public Cursor searchDB(String table, String[] columns, String column, String[] name){
-        return db.query(table, columns, column + "like ?", name, null, null, null);
+        return db.query(table, columns, column + " like ?", name, null, null, null);
     }
 
     public void allDelete(String table){
@@ -118,6 +118,7 @@ public class DBAdapter {
         }
         try{
             db.delete(table, id + "=?", new String[]{position});
+            db.setTransactionSuccessful();
         } catch (Exception e){
             e.printStackTrace();
         } finally {

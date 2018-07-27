@@ -87,10 +87,10 @@ public class OutputFragment extends Fragment {
     }
 
     private void findView(){
-        date = (TextView) getActivity().findViewById(R.id.display_date);
-        content = (EditText) getActivity().findViewById(R.id.input_content);
+        date = (TextView) getActivity().findViewById(R.id.output_date);
+        content = (EditText) getActivity().findViewById(R.id.output_content);
         number = (EditText) getActivity().findViewById(R.id.output_number);
-        amount = (EditText) getActivity().findViewById(R.id.input_amount);
+        amount = (EditText) getActivity().findViewById(R.id.output_amount);
     }
 
     private void init(){
