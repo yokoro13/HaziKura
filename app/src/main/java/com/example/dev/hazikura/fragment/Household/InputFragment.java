@@ -6,12 +6,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dev.hazikura.R;
 
 public class InputFragment extends Fragment {
 
     private MyListener myListener;
+
+    private TextView date;
+    private EditText content;
+    private EditText amount;
     View rootView;
 
     public static InputFragment newInstance() {
@@ -44,6 +53,23 @@ public class InputFragment extends Fragment {
         });
     }
 
+    @Override
+    public  void onStart(){
+        super.onStart();
+
+        findView();
+        init();
+        Button button = (Button)getActivity().findViewById(R.id.write_input);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // DBに登録
+                saveList();
+            }
+        });
+    }
+
     public interface MyListener {
         void onClickButton();
     }
@@ -61,4 +87,34 @@ public class InputFragment extends Fragment {
         super.onDetach();
         myListener = null;
     }
+
+    private void findView(){
+        date = (TextView) getActivity().findViewById(R.id.input_date);
+        content = (EditText) getActivity().findViewById(R.id.input_content);
+        amount = (EditText) getActivity().findViewById(R.id.input_amount);
+    }
+
+    private void init(){
+        content.setText("");
+        amount.setText("");
+    }
+
+    private void saveList(){
+        String strDate = date.getText().toString();
+        String strContent = content.getText().toString();
+        String strAmount = amount.getText().toString();
+
+        if(strDate.equals("日付を選択してください") || strAmount.equals("") || strContent.equals("")) {
+            Toast.makeText(getActivity(), "全ての箇所を入力してください", Toast.LENGTH_SHORT).show();
+        } else {
+            int iAmount = Integer.parseInt(strAmount);
+            DBAdapter dbAdapter = new DBAdapter(getActivity());
+            dbAdapter.openDB();
+            dbAdapter.saveIncome(strDate, strContent, iAmount);
+            dbAdapter.closeDB();
+
+            init();
+        }
+    }
+
 }

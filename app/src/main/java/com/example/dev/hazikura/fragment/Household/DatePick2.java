@@ -29,7 +29,7 @@ public class DatePick2 extends DialogFragment implements DatePickerDialog.OnDate
     }
 
     public void onDateSet(DatePicker view, int y, int m, int d) {
-        final TextView textView = getActivity().findViewById(R.id.display_date2);
+        final TextView textView = getActivity().findViewById(R.id.output_date);
         String str = String.format(Locale.US, "%d/%d/%d", y, m+1, d);
         textView.setText(str);
     }

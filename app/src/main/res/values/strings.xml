@@ -22,10 +22,14 @@
     <string name="no_date">No Data</string>
     <string name="pick_date">Pick Date</string>
     <string name="todo">TODO</string>
-    <string name="date">日付</string>
+    <string name="date">日付を選択してください</string>
     <string name="select_date">日付を選択</string>
     <string name="decide">決定</string>
-    <string name="amount">金額</string>
-    <string name="content">内容</string>
+    <string name="amount">金額を入力してください</string>
+    <string name="content">内容を入力してください</string>
+    <string name="number">個数を入力してください</string>
+    <string name="allDelete">全削除</string>
+    <string name="title_date">日付：</string>
+    <string name="title_Content">金額：</string>
 
 </resources>

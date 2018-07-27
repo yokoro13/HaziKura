@@ -30,7 +30,7 @@ public class DatePick extends DialogFragment implements DatePickerDialog.OnDateS
     }
 
     public void onDateSet(android.widget.DatePicker view, int y, int m, int d) {
-        final TextView textView = getActivity().findViewById(R.id.display_date);
+        final TextView textView = getActivity().findViewById(R.id.input_date);
         String str = String.format(Locale.US, "%d/%d/%d", y, m+1, d);
         textView.setText(str);
     }
