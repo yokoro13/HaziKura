@@ -5,14 +5,16 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.dev.hazikura.R;
-import com.example.dev.hazikura.activity.MainActivity;
 
 import java.util.Calendar;
 import java.util.Locale;
+
+/**
+ * Created by yokoro
+ **/
 
 public class DatePick extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 

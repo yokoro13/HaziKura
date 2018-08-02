@@ -13,6 +13,10 @@ import android.widget.Toast;
 
 import com.example.dev.hazikura.R;
 
+/**
+ * Created by yokoro
+ **/
+
 public class OutputFragment extends Fragment {
 
     private MyListener2 myListener2;

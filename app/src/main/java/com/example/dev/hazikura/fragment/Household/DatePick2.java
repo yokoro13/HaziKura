@@ -13,6 +13,10 @@ import com.example.dev.hazikura.R;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * Created by yokoro
+ **/
+
 public class DatePick2 extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     @Override

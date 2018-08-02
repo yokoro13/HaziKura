@@ -1,142 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@color/grayColor">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/main_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_remainder" />
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_weight="2"
+        android:background="@color/whiteColor">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp"
+            android:text="2018.2"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/colorAccent"
+            android:text="Prev" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/colorAccent"
+            android:text="Next" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="1dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="1dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:text="日"
+            android:textAlignment="center"
+            android:textColor="@color/redColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:text="月"
+            android:textAlignment="center"
+            android:textColor="@color/blackColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:text="火"
+            android:textAlignment="center"
+            android:textColor="@color/blackColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:text="水"
+            android:textAlignment="center"
+            android:textColor="@color/blackColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:text="木"
+            android:textAlignment="center"
+            android:textColor="@color/blackColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:text="金"
+            android:textAlignment="center"
+            android:textColor="@color/blackColor" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor"
+            android:text="土"
+            android:textAlignment="center"
+            android:textColor="@color/blueColor" />
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/calendarGridView"
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:layout_marginLeft="1dp"
+        android:layout_weight="15"
+        android:horizontalSpacing="1dp"
+        android:numColumns="7"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="1dp"></GridView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="224dp"
+        android:background="@color/whiteColor"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/linear_date"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:background="@color/whiteColor">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
+                android:id="@+id/titleGetDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/titleText"
+                android:text="日付を選択してください"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_plan"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/linear_date"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titlePlan"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2018.2"
-                android:textSize="20sp"
-                android:layout_centerInParent="true"/>
+                android:layout_weight="0.5"
+                android:text="予定："
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/prevButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Prev"
-                android:layout_alignParentLeft="true"
-                android:layout_marginVertical="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@color/colorAccent"/>
-
-            <Button
-                android:id="@+id/nextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Next"
-                android:layout_alignParentRight="true"
-                android:layout_marginVertical="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/colorAccent"/>
-        </RelativeLayout>
+            <EditText
+                android:id="@+id/editPlan"
+                android:layout_width="match_parent"
+                android:layout_height="126dp"
+                android:gravity="top|left"
+                android:hint="予定を入力してください"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="1dp">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="1dp"
-                android:textAlignment="center"
-                android:text="日"
-                android:background="@color/whiteColor"
-                android:textColor="@color/redColor"/>
+                android:id="@+id/titlePlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="場所："
+                android:textColor="#000000"
+                android:textSize="13sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
-                android:layout_weight="1"
-                android:background="@color/whiteColor"
-                android:text="月"
-                android:textColor="@color/blackColor"
-                android:textAlignment="center"/>
+            <EditText
+                android:id="@+id/editPlace"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+                android:hint="場所を入力してください"
+                android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="0dp"
+            <Button
+                android:id="@+id/write_plan"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="1dp"
-                android:textAlignment="center"
-                android:text="火"
-                android:textColor="@color/blackColor"
-                android:background="@color/whiteColor"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="1dp"
-                android:textAlignment="center"
-                android:text="水"
-                android:textColor="@color/blackColor"
-                android:background="@color/whiteColor"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="1dp"
-                android:textAlignment="center"
-                android:text="木"
-                android:textColor="@color/blackColor"
-                android:background="@color/whiteColor"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="1dp"
-                android:textAlignment="center"
-                android:text="金"
-                android:textColor="@color/blackColor"
-                android:background="@color/whiteColor"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="1dp"
-                android:textAlignment="center"
-                android:text="土"
-                android:textColor="@color/blueColor"
-                android:background="@color/whiteColor"/>
+                android:text="書き込む" />
 
         </LinearLayout>
 
-        <GridView
-            android:id="@+id/calendarGridView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="15"
-            android:horizontalSpacing="1dp"
-            android:layout_marginLeft="1dp"
-            android:numColumns="7"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="1dp"></GridView>
 
+    </LinearLayout>
 </LinearLayout>
+

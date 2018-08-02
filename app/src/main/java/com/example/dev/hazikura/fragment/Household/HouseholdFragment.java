@@ -13,8 +13,9 @@ import com.example.dev.hazikura.R;
 
 
 /**
-     * Created by dev on 2018/03/12.
-     */
+ * Created by yokoro
+ **/
+
 public class HouseholdFragment extends Fragment {
 
     ViewPager viewPager;
