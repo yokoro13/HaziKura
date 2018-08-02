@@ -7,10 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Created by yokoro
+ **/
+
 public class DBAdapter {
     private final static String DB_NAME = "hazikura.db";
     private final static String DB_INCOME_TABLE = "income";
     private final static String DB_OUTGO_TABLE = "outgo";
+    private final static String DB_REMAINDER_TABLE = "remainder";
     private final static int DB_VERSION = 1;
 
     static final private String TAG = "DBHelper";
@@ -25,6 +30,11 @@ public class DBAdapter {
     public final static String IN_DATE = "date";
     public final static String IN_CONTENT = "content";
     public final static String IN_AMOUNT = "amount";
+
+    public final static String RMD_ID = "id";
+    public final static String RMD_DATE = "date";
+    public final static String RMD_PLAN = "plans";
+    public final static String RMD_PLACE = "place";
 
     private SQLiteDatabase db = null;
     private DBHelper dbHelper = null;
@@ -87,6 +97,24 @@ public class DBAdapter {
         }
     }
 
+    public void saveRemainder(String date, String plans, String place){
+        db.beginTransaction();
+        try {
+            ContentValues values = new ContentValues();
+            values.put(RMD_DATE, date);
+            values.put(RMD_PLAN, plans);
+            values.put(RMD_PLACE, place);
+
+            db.insert(DB_REMAINDER_TABLE, null, values);
+
+            db.setTransactionSuccessful();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
     public Cursor getDB(String table, String[] columns){
         return db.query(table, columns, null, null, null, null, null);
     }
@@ -116,10 +144,31 @@ public class DBAdapter {
         if (table == DB_OUTGO_TABLE){
             id = OUT_ID;
         }
+        if (table == DB_REMAINDER_TABLE){
+            id = RMD_ID;
+        }
         try{
             db.delete(table, id + "=?", new String[]{position});
             db.setTransactionSuccessful();
         } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    public void updatePlans(String date, String plans, String place){
+        db.beginTransaction();
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(RMD_DATE, date);
+            values.put(RMD_PLAN, plans);
+            values.put(RMD_PLACE, place);
+            db.update(DB_REMAINDER_TABLE, values, RMD_DATE + " = date", null);
+            db.setTransactionSuccessful();
+        }
+        catch (Exception e){
             e.printStackTrace();
         } finally {
             db.endTransaction();
@@ -135,6 +184,7 @@ public class DBAdapter {
         public void onCreate(SQLiteDatabase db){
             createIncomeTable(db);
             createOutgoTable(db);
+            createRemainderTable(db);
             Log.i(TAG, "*****Create Tables*****");
         }
 
@@ -144,6 +194,7 @@ public class DBAdapter {
             // DBからテーブル削除
             db.execSQL("DROP TABLE " + DB_INCOME_TABLE + ";");
             db.execSQL("DROP TABLE " + DB_OUTGO_TABLE + ";");
+            db.execSQL("DROP TABLE " + DB_REMAINDER_TABLE + ";");
             // テーブル生成
             onCreate(db);
             Log.i(TAG, "*****Update Tables*****");
@@ -172,6 +223,19 @@ public class DBAdapter {
                             + ");";
             db.execSQL(sql);
             Log.i(TAG, "*****テーブルoutgoを作成*****");
+        }
+
+        private void createRemainderTable(SQLiteDatabase db){
+            String sql =
+                    "CREATE TABLE " + DB_REMAINDER_TABLE + "("
+                            + RMD_ID + " integer primary key autoincrement,"
+                            + RMD_DATE + " text not null,"
+                            + RMD_PLAN + " text,"
+                            + RMD_PLACE + " text"
+                            + ");";
+
+            db.execSQL(sql);
+            Log.i(TAG, "*****テーブルremainderを作成*****");
         }
 
     }

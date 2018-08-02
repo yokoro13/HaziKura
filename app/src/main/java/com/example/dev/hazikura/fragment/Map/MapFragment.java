@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 
 
 import com.example.dev.hazikura.R;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
- * Created by dev on 2018/03/12.
- */
+ * Created by yokoro
+ **/
 
 public class MapFragment extends Fragment implements OnMapReadyCallback{
 
@@ -30,17 +30,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_map, container, false);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        //CameraUpdate update = CameraUpdateFactory.zoomBy(3);
         mapFragment.getMapAsync(this);
+
         return view;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng UCA = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(UCA).title("YOUR TITLE")).showInfoWindow();
+        LatLng JPN = new LatLng(34.6, 135.5);
+        CameraUpdate update = CameraUpdateFactory.newLatLng(JPN);
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(UCA,17));
+        mMap.moveCamera(update);
 
     }
 }

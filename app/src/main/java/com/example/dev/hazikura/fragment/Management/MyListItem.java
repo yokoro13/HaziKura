@@ -2,6 +2,10 @@ package com.example.dev.hazikura.fragment.Management;
 
 import android.util.Log;
 
+/**
+ * Created by yokoro
+ **/
+
 public class MyListItem {
 
     protected int id;

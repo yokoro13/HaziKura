@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Created by yokoro
+ **/
 
 public class DateManager {
     Calendar mCalendar;

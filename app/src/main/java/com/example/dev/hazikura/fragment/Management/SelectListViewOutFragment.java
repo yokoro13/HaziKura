@@ -25,6 +25,10 @@ import com.example.dev.hazikura.fragment.Household.DBAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by yokoro
+ **/
+
 public class SelectListViewOutFragment extends Fragment{
 
     private DBAdapter dbAdapter;

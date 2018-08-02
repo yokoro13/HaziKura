@@ -1,174 +1,197 @@
 package com.example.dev.hazikura.fragment.Remainder;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dev.hazikura.R;
+import com.example.dev.hazikura.fragment.Household.DBAdapter;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
- * Created by dev on 2018/03/12.
- */
+ * Created by yokoro
+ **/
 
 public class RemainderFragment extends Fragment {
-    public GregorianCalendar month, itemmonth;
 
-    public CalendarAdapter adapter;
-    public Handler handler;
+    DBAdapter dbAdapter;
 
-    public ArrayList<String> items;
-
+    private TextView titleText;
+    private Button prevButton, nextButton;
+    private CalAdapter mCalendarAdapter;
+    private GridView calendarGridView;
+    private String selectedGridDate;
+    private TextView setDate;
+    private EditText editPlan;
+    private EditText editPlace;
+    private Date date;
+    View rootView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.calendar, null);
+        rootView = inflater.inflate(R.layout.fragment_remainder, null);
 
-        Locale.setDefault( Locale.US );
-        month = (GregorianCalendar) GregorianCalendar.getInstance();
-        itemmonth = (GregorianCalendar) month.clone();
+        setDate = rootView.findViewById(R.id.titleGetDate);
+        editPlan = rootView.findViewById(R.id.editPlan);
+        editPlace = rootView.findViewById(R.id.editPlace);
 
-        items = new ArrayList<String>();
-        adapter = new CalendarAdapter(getActivity(), month);
+        titleText = rootView.findViewById(R.id.titleText);
+        prevButton = rootView.findViewById(R.id.prevButton);
 
-        GridView gridview = (GridView) view.findViewById(R.id.gridview);
-        gridview.setAdapter(adapter);
 
-        handler = new Handler();
-        handler.post(calendarUpdater);
 
-        TextView title = (TextView) view.findViewById(R.id.title);
-        title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
-
-        RelativeLayout previous = (RelativeLayout) view.findViewById(R.id.previous);
-
-        previous.setOnClickListener(new OnClickListener() {
-
+        prevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPreviousMonth();
-                refreshCalendar();
+                mCalendarAdapter.prevMonth();
+                titleText.setText(mCalendarAdapter.getTitle());
             }
         });
 
-        RelativeLayout next = (RelativeLayout) view.findViewById(R.id.next);
-        next.setOnClickListener(new OnClickListener() {
-
+        nextButton = rootView.findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setNextMonth();
-                refreshCalendar();
-
+                mCalendarAdapter.nextMonth();
+                titleText.setText(mCalendarAdapter.getTitle());
             }
         });
 
-        gridview.setOnItemClickListener(new OnItemClickListener() {
+
+        calendarGridView = rootView.findViewById(R.id.calendarGridView);
+        mCalendarAdapter = new CalAdapter(getActivity());
+        calendarGridView.setAdapter(mCalendarAdapter);
+        titleText.setText(mCalendarAdapter.getTitle());
+
+        calendarGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
+                date = (CalAdapter.dateArray.get(position));
 
-                ((CalendarAdapter) parent.getAdapter()).setSelected(v);
-                String selectedGridDate = CalendarAdapter.dayString
-                        .get(position);
-                String[] separatedTime = selectedGridDate.split("-");
-                String gridvalueString = separatedTime[2].replaceFirst("^0*",
-                        "");
-                int gridvalue = Integer.parseInt(gridvalueString);
-                if ((gridvalue > 10) && (position < 8)) {
-                    setPreviousMonth();
-                    refreshCalendar();
-                } else if ((gridvalue < 7) && (position > 28)) {
-                    setNextMonth();
-                    refreshCalendar();
+                selectedGridDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
+
+                setDate.setText(selectedGridDate);
+
+                if(setDate.getText().toString() != "日付を選択してください") {
+                    editPlan.setText(searchPlan(selectedGridDate));
+                    editPlace.setText(searchPlace(selectedGridDate));
                 }
-                ((CalendarAdapter) parent.getAdapter()).setSelected(v);
-
-                showToast(selectedGridDate);
-
             }
         });
-        return view;
+
+        Button button = (Button) rootView.findViewById(R.id.write_plan);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveList();
+            }
+        });
+        return rootView;
     }
 
-    protected void setNextMonth() {
-        if (month.get(GregorianCalendar.MONTH) == month
-                .getActualMaximum(GregorianCalendar.MONTH)) {
-            month.set((month.get(GregorianCalendar.YEAR) + 1),
-                    month.getActualMinimum(GregorianCalendar.MONTH), 1);
-        } else {
-            month.set(GregorianCalendar.MONTH,
-                    month.get(GregorianCalendar.MONTH) + 1);
+    public String searchPlan(String date) {
+        String plan;
+
+        dbAdapter = new DBAdapter(getActivity());
+        dbAdapter.readDB();                         // DBの読み込み(読み込みの方)
+
+        String column = "date";          //検索対象のカラム名
+        String[] name = {date};            //検索対象の文字
+
+        // DBの検索データを取得 入力した文字列を参照してDBの品名から検索
+        Cursor c = dbAdapter.searchDB("remainder",null, column, name);
+
+        c.moveToFirst();
+        try{
+            plan = c.getString(2);
+        }
+        catch (CursorIndexOutOfBoundsException e){
+
+            Log.d("search","null");
+            plan = "";
+        }
+        c.close();
+        dbAdapter.closeDB();        // DBを閉じる
+
+        return plan;
+    }
+
+    public String searchPlace(String date) {
+        String place;
+
+        dbAdapter = new DBAdapter(getActivity());
+        dbAdapter.readDB();                         // DBの読み込み(読み込みの方)
+
+        String column = "date";          //検索対象のカラム名
+        String[] name = {date};            //検索対象の文字
+
+        // DBの検索データを取得 入力した文字列を参照してDBの品名から検索
+        Cursor c = dbAdapter.searchDB("remainder",null, column, name);
+
+        c.moveToFirst();
+        try{
+            place = c.getString(3);
+        }
+        catch (CursorIndexOutOfBoundsException e){
+            Log.d("search","null");
+            place = "";
+        }
+        c.close();
+        dbAdapter.closeDB();        // DBを閉じる
+
+        return place;
+    }
+
+    private void saveList(){
+
+        String strDate = setDate.getText().toString();
+        String strPlan = editPlan.getText().toString();
+        String strPlace = editPlace.getText().toString();
+        if(strPlan == "" ){
+            Log.d("strPlan:","empty");
         }
 
-    }
-
-    protected void setPreviousMonth() {
-        if (month.get(GregorianCalendar.MONTH) == month
-                .getActualMinimum(GregorianCalendar.MONTH)) {
-            month.set((month.get(GregorianCalendar.YEAR) - 1),
-                    month.getActualMaximum(GregorianCalendar.MONTH), 1);
+        if(strDate.equals("日付を選択してください")) {
+            Toast.makeText(getActivity(), "日付を選択してください", Toast.LENGTH_SHORT).show();
         } else {
-            month.set(GregorianCalendar.MONTH,
-                    month.get(GregorianCalendar.MONTH) - 1);
-        }
 
-    }
-
-    protected void showToast(String string) {
-        Toast.makeText(getActivity(), string, Toast.LENGTH_SHORT).show();
-
-    }
-
-    public void refreshCalendar() {
-        TextView title = (TextView) getActivity().findViewById(R.id.title);
-
-        adapter.refreshDays();
-        adapter.notifyDataSetChanged();
-        handler.post(calendarUpdater);
-
-        title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
-    }
-
-    public Runnable calendarUpdater = new Runnable() {
-
-        @Override
-        public void run() {
-            items.clear();
-
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.US);
-            String itemvalue;
-            for (int i = 0; i < 7; i++) {
-                itemvalue = df.format(itemmonth.getTime());
-                itemmonth.add(GregorianCalendar.DATE, 1);
-                items.add("2012-09-12");
-                items.add("2012-10-07");
-                items.add("2012-10-15");
-                items.add("2012-10-20");
-                items.add("2012-11-30");
-                items.add("2012-11-28");
+            if((searchPlan(strDate) != "") || (searchPlace(strDate) != "")){
+                dbAdapter = new DBAdapter(getActivity());
+                dbAdapter.openDB();
+                dbAdapter.updatePlans(strDate, strPlan, strPlace);
+            }
+            else {
+                dbAdapter = new DBAdapter(getActivity());
+                dbAdapter.openDB();
+                dbAdapter.saveRemainder(strDate, strPlan, strPlace);
             }
 
-            adapter.setItems(items);
-            adapter.notifyDataSetChanged();
+            Log.d("Write remainder:", strDate);
+            Log.d("write remainder:", strPlan);
+            Log.d("write remainder:", strPlace);
+            dbAdapter.closeDB();
+
+            mCalendarAdapter.notifyDataSetChanged();
+            calendarGridView.setAdapter(mCalendarAdapter);
         }
-    };
-
-
+    }
 }
+
