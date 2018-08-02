@@ -99,6 +99,7 @@ public class DBAdapter {
 
     public void saveRemainder(String date, String plans, String place){
         db.beginTransaction();
+
         try {
             ContentValues values = new ContentValues();
             values.put(RMD_DATE, date);
@@ -162,10 +163,12 @@ public class DBAdapter {
 
         try {
             ContentValues values = new ContentValues();
-            values.put(RMD_DATE, date);
             values.put(RMD_PLAN, plans);
             values.put(RMD_PLACE, place);
-            db.update(DB_REMAINDER_TABLE, values, RMD_DATE + " = date", null);
+            String whereClause = RMD_DATE + " =?";
+            String whereArgs[] = new String[1];
+            whereArgs[0] = date;
+            db.update(DB_REMAINDER_TABLE, values, whereClause, whereArgs);
             db.setTransactionSuccessful();
         }
         catch (Exception e){

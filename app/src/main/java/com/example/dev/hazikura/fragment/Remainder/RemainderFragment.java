@@ -169,20 +169,18 @@ public class RemainderFragment extends Fragment {
             Log.d("strPlan:","empty");
         }
 
+        Log.d("strDate",strDate);
+        Log.d("strPlan",strPlace);
+        Log.d("strPlace",strPlace);
+
         if(strDate.equals("日付を選択してください")) {
             Toast.makeText(getActivity(), "日付を選択してください", Toast.LENGTH_SHORT).show();
         } else {
 
-            if((searchPlan(strDate) != "") || (searchPlace(strDate) != "")){
-                dbAdapter = new DBAdapter(getActivity());
-                dbAdapter.openDB();
-                dbAdapter.updatePlans(strDate, strPlan, strPlace);
-            }
-            else {
-                dbAdapter = new DBAdapter(getActivity());
-                dbAdapter.openDB();
-                dbAdapter.saveRemainder(strDate, strPlan, strPlace);
-            }
+            dbAdapter = new DBAdapter(getActivity());
+            dbAdapter.openDB();
+            dbAdapter.updatePlans(strDate, strPlan, strPlace);
+            Log.d("search", "updated");
 
             Log.d("Write remainder:", strDate);
             Log.d("write remainder:", strPlan);

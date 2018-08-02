@@ -75,7 +75,7 @@ public class CalAdapter extends BaseAdapter {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd", Locale.JAPAN);
 
         //当月以外のセルをグレーアウト
-        if(searchPlan(format.format(dateArray.get(position))) != ""){
+        if(!searchPlan(format.format(dateArray.get(position))).equals("")){
             convertView.setBackgroundColor(Color.rgb(210,240,200));
         }
         else
