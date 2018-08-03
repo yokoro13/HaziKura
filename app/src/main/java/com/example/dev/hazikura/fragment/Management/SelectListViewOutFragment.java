@@ -16,6 +16,7 @@ import android.database.Cursor;
 
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import android.widget.TextView;
@@ -37,6 +38,8 @@ public class SelectListViewOutFragment extends Fragment{
     private ListView mListView;
     protected MyListItem myListItem;
 
+    private TextView totalOutgo;
+
     private String[] columns = null;
     View rootView;
 
@@ -54,6 +57,8 @@ public class SelectListViewOutFragment extends Fragment{
         items = new ArrayList<>();
 
         myBaseAdapter = new SelectListViewOutFragment.MyBaseAdapter(getActivity(),items);
+
+        totalOutgo =  (TextView) rootView.findViewById(R.id.display_titleTotalOutput);
         mListView = (ListView) rootView.findViewById(R.id.listView_out_management);
 
         loadMyList();
@@ -99,6 +104,7 @@ public class SelectListViewOutFragment extends Fragment{
     }
 
     private void loadMyList(){
+        int ttl = 0;
         items.clear();
         dbAdapter.openDB();
 
@@ -119,6 +125,9 @@ public class SelectListViewOutFragment extends Fragment{
                 Log.d("取得ID:", c.getString(3));
                 Log.d("取得ID:", c.getString(4));
 
+                ttl = ttl + Integer.parseInt(c.getString(4));
+
+                Log.d("total",Integer.toString(ttl));
                 items.add(myListItem);
 
             } while (c.moveToNext());
@@ -127,6 +136,8 @@ public class SelectListViewOutFragment extends Fragment{
         dbAdapter.closeDB();
         mListView.setAdapter(myBaseAdapter);
         myBaseAdapter.notifyDataSetChanged();
+        totalOutgo.setText(Integer.toString(ttl));
+
         Log.d("notify:", "list更新");
     }
 

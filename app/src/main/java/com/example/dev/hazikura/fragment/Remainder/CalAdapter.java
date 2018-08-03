@@ -75,7 +75,7 @@ public class CalAdapter extends BaseAdapter {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd", Locale.JAPAN);
 
         //当月以外のセルをグレーアウト
-        if(!searchPlan(format.format(dateArray.get(position))).equals("")){
+        if(!searchPlan(format.format(dateArray.get(position))).equals("") || !searchPlace(format.format(dateArray.get(position))).equals("")){
             convertView.setBackgroundColor(Color.rgb(210,240,200));
         }
         else
@@ -139,6 +139,7 @@ public class CalAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+
     public String searchPlan(String date) {
         String plan;
 
@@ -167,4 +168,31 @@ public class CalAdapter extends BaseAdapter {
         return plan;
     }
 
+    public String searchPlace(String date) {
+        String place;
+
+        dbAdapter = new DBAdapter(this.mContext);
+        dbAdapter.readDB();                         // DBの読み込み(読み込みの方)
+
+        String column = "date";          //検索対象のカラム名
+        String[] name = {date};            //検索対象の文字
+
+        // DBの検索データを取得 入力した文字列を参照してDBの品名から検索
+        Cursor c = dbAdapter.searchDB("remainder",null, column, name);
+
+        c.moveToFirst();
+        try{
+            place = c.getString(3);
+            Log.d(date,place);
+        }
+        catch (CursorIndexOutOfBoundsException e){
+
+            Log.d(date,"null");
+            place = "";
+        }
+        c.close();
+        dbAdapter.closeDB();        // DBを閉じる
+
+        return place;
+    }
 }

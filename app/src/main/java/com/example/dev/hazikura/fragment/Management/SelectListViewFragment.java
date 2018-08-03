@@ -32,6 +32,7 @@ public class SelectListViewFragment extends Fragment {
     private MyBaseAdapter myBaseAdapter;
     private List<MyListItem> items;
     private ListView mListView;
+    private TextView totalIncome;
     protected MyListItem myListItem;
 
     private String[] columns = null;
@@ -51,9 +52,14 @@ public class SelectListViewFragment extends Fragment {
         items = new ArrayList<>();
 
         myBaseAdapter = new MyBaseAdapter(getActivity(),items);
+
+        totalIncome = (TextView) rootView.findViewById(R.id.display_TotalInput);
+
         mListView = (ListView) rootView.findViewById(R.id.listView_management);
 
         loadMyList();
+
+
 
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -96,6 +102,7 @@ public class SelectListViewFragment extends Fragment {
     }
 
     private void loadMyList(){
+        int ttl = 0;
         items.clear();
         dbAdapter.openDB();
 
@@ -114,6 +121,8 @@ public class SelectListViewFragment extends Fragment {
                 Log.d("取得ID:", c.getString(2));
                 Log.d("取得ID:", c.getString(3));
 
+                ttl = ttl + Integer.parseInt(c.getString(3));
+
                 items.add(myListItem);
 
             } while (c.moveToNext());
@@ -122,6 +131,7 @@ public class SelectListViewFragment extends Fragment {
         dbAdapter.closeDB();
         mListView.setAdapter(myBaseAdapter);
         myBaseAdapter.notifyDataSetChanged();
+        totalIncome.setText(Integer.toString(ttl));
         Log.d("notify:", "list更新");
     }
 

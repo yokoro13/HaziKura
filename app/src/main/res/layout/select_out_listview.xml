@@ -11,11 +11,28 @@
     android:paddingTop="16dp">
 
     <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <TextView
         android:id="@+id/main_fragment"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="長押しで削除できまs" />
+        android:text="長押しで削除　　" />
+
+    <TextView
+        android:id="@+id/display_titleTotalOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="総支出: " />
+
+    <TextView
+        android:id="@+id/display_TotalOutput"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/listView_out_management"

@@ -39,6 +39,20 @@ public class InputFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_input, container, false);
+
+
+
+        findView();
+        init();
+        Button button = (Button) rootView.findViewById(R.id.write_input);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // DBに登録
+                saveList();
+            }
+        });
         return rootView;
     }
 
@@ -56,22 +70,6 @@ public class InputFragment extends Fragment {
         });
     }
 
-    @Override
-    public  void onStart(){
-        super.onStart();
-
-        findView();
-        init();
-        Button button = (Button)getActivity().findViewById(R.id.write_input);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // DBに登録
-                saveList();
-            }
-        });
-    }
 
     public interface MyListener {
         void onClickButton();
@@ -92,9 +90,9 @@ public class InputFragment extends Fragment {
     }
 
     private void findView(){
-        date = (TextView) getActivity().findViewById(R.id.input_date);
-        content = (EditText) getActivity().findViewById(R.id.input_content);
-        amount = (EditText) getActivity().findViewById(R.id.input_amount);
+        date = (TextView) rootView.findViewById(R.id.input_date);
+        content = (EditText) rootView.findViewById(R.id.input_content);
+        amount = (EditText) rootView.findViewById(R.id.input_amount);
     }
 
     private void init(){

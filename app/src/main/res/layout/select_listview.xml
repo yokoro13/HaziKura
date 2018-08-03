@@ -12,12 +12,28 @@
     tools:context="com.example.dev.hazikura.fragment.Management.SelectListViewFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/main_fragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="長押しで削除できまs" />
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/main_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="長押しで削除　　" />
+
+        <TextView
+            android:id="@+id/display_titleTotalInput"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="総収入: " />
+
+        <TextView
+            android:id="@+id/display_TotalInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="" />
+    </LinearLayout>
     <ListView
         android:id="@+id/listView_management"
         android:layout_width="match_parent"

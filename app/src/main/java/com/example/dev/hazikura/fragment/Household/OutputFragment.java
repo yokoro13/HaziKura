@@ -25,6 +25,8 @@ public class OutputFragment extends Fragment {
     private EditText number;
     private EditText amount;
 
+    private View rootView;
+
     public static OutputFragment newInstance() {
         OutputFragment fragment = new OutputFragment();
         return fragment;
@@ -37,7 +39,21 @@ public class OutputFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_output, container, false);
+        rootView = inflater.inflate(R.layout.fragment_output, container, false);
+
+
+        findVIew();
+        init();
+        Button button = (Button) rootView.findViewById(R.id.write_output);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // DBに登録
+                saveList();
+            }
+        });
+        return rootView;
 
     }
 
@@ -59,17 +75,6 @@ public class OutputFragment extends Fragment {
     public  void onStart(){
         super.onStart();
 
-        findView();
-        init();
-        Button button = (Button)getActivity().findViewById(R.id.write_output);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // DBに登録
-                saveList();
-            }
-        });
     }
 
     public interface MyListener2 {
@@ -90,11 +95,12 @@ public class OutputFragment extends Fragment {
         myListener2 = null;
     }
 
-    private void findView(){
-        date = (TextView) getActivity().findViewById(R.id.output_date);
-        content = (EditText) getActivity().findViewById(R.id.output_content);
-        number = (EditText) getActivity().findViewById(R.id.output_number);
-        amount = (EditText) getActivity().findViewById(R.id.output_amount);
+    private void findVIew(){
+        date = (TextView) rootView.findViewById(R.id.output_date);
+        content = (EditText) rootView.findViewById(R.id.output_content);
+        number = (EditText) rootView.findViewById(R.id.output_number);
+        amount = (EditText) rootView.findViewById(R.id.output_amount);
+
     }
 
     private void init(){

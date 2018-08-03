@@ -180,12 +180,21 @@ public class RemainderFragment extends Fragment {
             dbAdapter = new DBAdapter(getActivity());
             dbAdapter.openDB();
             dbAdapter.updatePlans(strDate, strPlan, strPlace);
+            dbAdapter.closeDB();
+
+            if (searchPlan(strDate).equals("") || searchPlace(strDate).equals("")){
+                dbAdapter.openDB();
+                dbAdapter.saveRemainder(strDate, strPlan, strPlace);
+                Log.d("search", "saved");
+                dbAdapter.closeDB();
+            }
+
             Log.d("search", "updated");
 
             Log.d("Write remainder:", strDate);
             Log.d("write remainder:", strPlan);
             Log.d("write remainder:", strPlace);
-            dbAdapter.closeDB();
+
 
             mCalendarAdapter.notifyDataSetChanged();
             calendarGridView.setAdapter(mCalendarAdapter);
