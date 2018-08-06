@@ -175,7 +175,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
 
             // Add a marker and move the camera
             LatLng newLocation = new LatLng(lat, lng);
-            mMap.addMarker(new MarkerOptions().position(newLocation).title("My Location"));
+            mMap.addMarker(new MarkerOptions().position(newLocation).title("現在地"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(newLocation));
 
         }
@@ -261,7 +261,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
         String column = "date";          //検索対象のカラム名
         String[] name = {date};            //検索対象の文字
 
-        // DBの検索データを取得 入力した文字列を参照してDBの品名から検索
+        // DBの検索データを取得
         Cursor c = dbAdapter.searchDB("remainder",null, column, name);
 
         c.moveToFirst();

@@ -151,10 +151,10 @@
     <Button
         android:id="@+id/write_output"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="175dp"
+        android:layout_marginBottom="130dp"
         android:text="@string/decide"
         tools:ignore="RtlCompat"></Button>
 
