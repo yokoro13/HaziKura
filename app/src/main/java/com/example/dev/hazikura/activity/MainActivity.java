@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements InputFragment.MyL
     @Override
     protected void onResume(){
         super.onResume();
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
-        menuItem.setChecked(true);
+        //Menu menu = bottomNavigationView.getMenu();
+        //MenuItem menuItem = menu.getItem(0);
+        //menuItem.setChecked(true);
     }
 
     @Override

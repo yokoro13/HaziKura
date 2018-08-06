@@ -58,7 +58,7 @@ public class SelectListViewOutFragment extends Fragment{
 
         myBaseAdapter = new SelectListViewOutFragment.MyBaseAdapter(getActivity(),items);
 
-        totalOutgo =  (TextView) rootView.findViewById(R.id.display_titleTotalOutput);
+        totalOutgo =  (TextView) rootView.findViewById(R.id.display_TotalOutput);
         mListView = (ListView) rootView.findViewById(R.id.listView_out_management);
 
         loadMyList();
