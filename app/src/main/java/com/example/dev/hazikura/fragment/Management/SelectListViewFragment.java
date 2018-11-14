@@ -38,7 +38,6 @@ public class SelectListViewFragment extends Fragment {
     private String[] columns = null;
     View rootView;
 
-
     public static SelectListViewFragment newInstance() {
         SelectListViewFragment fragment = new SelectListViewFragment();
         return fragment;
