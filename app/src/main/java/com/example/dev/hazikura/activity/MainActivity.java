@@ -1,3 +1,5 @@
+// これは何ですか．
+
 package com.example.dev.hazikura.activity;
 
 import android.Manifest;
