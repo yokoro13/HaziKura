@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.dev.hazikura.fragment.Map.MapFragment">
+    tools:context="com.example.dev.hazikura.fragment.map.MapFragment">
 
     <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"

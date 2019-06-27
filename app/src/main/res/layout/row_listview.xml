@@ -8,7 +8,7 @@
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
     android:paddingTop="4dp"
-    tools:context="com.example.dev.hazikura.fragment.Management.SelectListViewFragment">
+    tools:context="com.example.dev.hazikura.fragment.management.SelectListViewFragment">
 
     <TextView
         android:id="@+id/text_inputContent"

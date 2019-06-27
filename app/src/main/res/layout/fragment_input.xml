@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dev.hazikura.fragment.Household.InputFragment"
+    tools:context="com.example.dev.hazikura.fragment.household.InputFragment"
     android:id="@+id/input_fragment"
     >
 

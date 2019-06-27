@@ -9,7 +9,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.example.dev.hazikura.fragment.Management.SelectListViewFragment">
+    tools:context="com.example.dev.hazikura.fragment.management.SelectListViewFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
